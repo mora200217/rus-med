@@ -32,13 +32,13 @@ Por tanto si buscamos un rango de operacion cercano a 0, aumentamos la robustez 
 Se propuso un rango de 0.1 a 0.2 de avance, por lo que se tiene 
 
 $$
-    F_{out} = k ~ \left(0.1~~~~0.2 \right)~L_3
+    F_{out} = k ~ \left(0.1~~~~0.2 \right )~L_3
 $$
 
 Partimos de una distancia de 7 cm como supuesto inicial. Esto tomandolo como la mitad de la longitud del transductor, para tener una proporción estética. Para el resorte, partimos de $0.5 N/mm$. 
 Validamos con el alcance 
 
-$$ F_{out} =  \left(3.5, 7.0) ~N$$
+$$ F_{out} =  \left(3.5, 7.0 \right) ~N$$
 
 
 
