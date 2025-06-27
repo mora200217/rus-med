@@ -4399,9 +4399,13 @@ void main(void) {
     LATAbits.LATA1 = 0;
     _delay((unsigned long)((1000)*(4000000/4000.0)));
 
+    float set_angle = 0;
 
 
-    while(1);
+    while(1){
+
+
+    }
 
     return;
 }

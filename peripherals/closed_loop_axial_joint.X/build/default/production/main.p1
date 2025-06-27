@@ -79,7 +79,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h: 1706: extern volatile unsigned char OSCCON __attribute__((address(0x099)));
 [v _OSCCON `Vuc ~T0 @X0 0 e@153 ]
 "25 main.c
-[; ;main.c: 25: 
+[; ;main.c: 25:     while(1){
 [v _i2c_slave_init `(v ~T0 @X0 0 ef ]
 "1158 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h
 [; ;/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h: 1158:     struct {
@@ -666,7 +666,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x LVP  =  OFF ]
 [v $root$_main `(v ~T0 @X0 0 e ]
 "33
-[; ;main.c: 33:     if (SSP1IF && SSP1IE) {
+[; ;main.c: 33: 
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
@@ -678,107 +678,115 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 35: 
 [e ( _i2c_slave_init ..  ]
 "38
-[; ;main.c: 38:             volatile uint8_t dummy = SSP1BUF;
+[; ;main.c: 38: 
 [e = . . _TRISAbits 0 1 -> -> 0 `i `uc ]
 "39
-[; ;main.c: 39:         }
+[; ;main.c: 39: 
 [e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
 "40
-[; ;main.c: 40: 
+[; ;main.c: 40:         if (!SSP1STATbits.D_nA && !SSP1STATbits.R_nW) {
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "41
-[; ;main.c: 41:         else if (SSP1STATbits.D_nA && !SSP1STATbits.R_nW) {
+[; ;main.c: 41: 
 [e = . . _LATAbits 0 1 -> -> 0 `i `uc ]
 "42
-[; ;main.c: 42:             uint8_t data = SSP1BUF;
+[; ;main.c: 42:             volatile uint8_t dummy = SSP1BUF;
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"46
-[; ;main.c: 46:             } else if (data == 0x01) {
+"44
+[; ;main.c: 44: 
+[v _set_angle `f ~T0 @X0 1 a ]
+[e = _set_angle -> -> 0 `i `f ]
+"47
+[; ;main.c: 47:             LATAbits.LATA1 = 1;
 [e :U 357 ]
+{
+"50
+[; ;main.c: 50:             } else if (data == 0x01) {
+}
 [e :U 356 ]
 [e $U 357  ]
 [e :U 358 ]
-"48
-[; ;main.c: 48:             }
+"52
+[; ;main.c: 52:             }
 [e $UE 355  ]
-"49
-[; ;main.c: 49:             SSP1CON1bits.CKP = 1;
+"53
+[; ;main.c: 53:             SSP1CON1bits.CKP = 1;
 [e :UE 355 ]
 }
 [v $root$_isr `(v ~T0 @X0 0 e ]
-"54
-[; ;main.c: 54:             SSP1BUF = 0x42;
+"58
+[; ;main.c: 58:             SSP1BUF = 0x42;
 [v _isr `(v ~T2 @X0 1 ef ]
 {
 [e :U _isr ]
 [f ]
-"55
-[; ;main.c: 55:             SSP1CON1bits.CKP = 1;
+"59
+[; ;main.c: 59:             SSP1CON1bits.CKP = 1;
 [e $ ! && _SSP1IF _SSP1IE 360  ]
 {
-"58
-[; ;main.c: 58:         SSP1IF = 0;
+"62
+[; ;main.c: 62:         SSP1IF = 0;
 [e $ ! && ! != -> . . _SSP1STATbits 0 5 `i -> 0 `i ! != -> . . _SSP1STATbits 0 2 `i -> 0 `i 361  ]
 {
-"60
-[; ;main.c: 60: }
+"64
+[; ;main.c: 64: }
 [v _dummy `Vuc ~T0 @X0 1 a ]
 [e = _dummy _SSP1BUF ]
-"61
+"65
 }
 [e $U 362  ]
-"63
+"67
 [e :U 361 ]
 [e $ ! && != -> . . _SSP1STATbits 0 5 `i -> 0 `i ! != -> . . _SSP1STATbits 0 2 `i -> 0 `i 363  ]
 {
-"64
+"68
 [v _data `uc ~T0 @X0 1 a ]
 [e = _data _SSP1BUF ]
-"65
+"69
 [e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
-"66
+"70
 [e $ ! == -> _data `i -> 2 `i 364  ]
 {
-"67
+"71
 [e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
-"68
+"72
 }
 [e $U 365  ]
 [e :U 364 ]
 [e $ ! == -> _data `i -> 1 `i 366  ]
 {
-"69
+"73
 [e = . . _LATAbits 0 1 -> -> 0 `i `uc ]
-"70
+"74
 }
 [e :U 366 ]
 [e :U 365 ]
-"71
+"75
 [e = . . _SSP1CON1bits 0 4 -> -> 1 `i `uc ]
-"72
+"76
 }
 [e $U 367  ]
-"74
+"78
 [e :U 363 ]
 [e $ ! != -> . . _SSP1STATbits 0 2 `i -> 0 `i 368  ]
 {
-"75
+"79
 [v _dummy `Vuc ~T0 @X0 1 a ]
 [e = _dummy _SSP1BUF ]
-"76
+"80
 [e = _SSP1BUF -> -> 66 `i `uc ]
-"77
+"81
 [e = . . _SSP1CON1bits 0 4 -> -> 1 `i `uc ]
-"78
+"82
 }
 [e :U 368 ]
 [e :U 367 ]
 [e :U 362 ]
-"80
+"84
 [e = _SSP1IF -> -> 0 `i `b ]
-"81
+"85
 }
 [e :U 360 ]
-"82
+"86
 [e :UE 359 ]
 }
