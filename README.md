@@ -1,5 +1,7 @@
-# Sistema Robotizado Ultrasónico
+# RUSMED
+¡Conoce RUSMED! Una nueva herramienta para acelerar el proceso de diagnóstico de transtornos del manguito rotador 
 
+---
 
 ## Sensores disponibles 
 ### IMU 
