@@ -28,35 +28,11 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef _I2C_INIT_CONFIG_
-#define	_I2C_INIT_CONFIG_
+#ifndef _CONFIG_PIC_
+#define	_CONFIG_PIC_
 
-#define I2C_ADDRESS 0x42
-#include <xc.h> // include processor files - each processor file is guarded.  
-
-
-
-void i2c_slave_init(void) {
-    // Enable peripheral interrupts
-    PIE1bits.SSP1IE = 1;    // Enable SSP1 (I2C) interrupt
-    PIR1bits.SSP1IF = 0;    // Clear the SSP1 interrupt flag
-
-    // Enable global and peripheral interrupts
-    INTCONbits.PEIE = 1;    // Peripheral Interrupt Enable
-    INTCONbits.GIE  = 1;   
-
-
-    TRISBbits.TRISB1 = 1; // SCL as input
-    TRISBbits.TRISB4 = 1; // SDA as input
-
-    SSP1CON1 = 0b00110110; // I2C Slave mode, 7-bit address
-    SSP1CON2 = 0;          // Default settings
-    SSP1STAT = 0;          // Clear status
-
-    SSP1ADD = (I2C_ADDRESS << 1); // Load slave address into SSP1ADD (shifted)
-
-    SSP1CON1bits.SSPEN = 1; // Enable MSSP
-}
+#include <xc.h> // include processor files - each processor file is guarded. 
+#define _XTAL_FREQ 4000000
 
 #endif	/* XC_HEADER_TEMPLATE_H */
 

@@ -28,35 +28,51 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef _I2C_INIT_CONFIG_
-#define	_I2C_INIT_CONFIG_
+#ifndef XC_HEADER_TEMPLATE_H
+#define	XC_HEADER_TEMPLATE_H
 
-#define I2C_ADDRESS 0x42
 #include <xc.h> // include processor files - each processor file is guarded.  
 
+// TODO Insert appropriate #include <>
 
+// TODO Insert C++ class definitions if appropriate
 
-void i2c_slave_init(void) {
-    // Enable peripheral interrupts
-    PIE1bits.SSP1IE = 1;    // Enable SSP1 (I2C) interrupt
-    PIR1bits.SSP1IF = 0;    // Clear the SSP1 interrupt flag
+// TODO Insert declarations
 
-    // Enable global and peripheral interrupts
-    INTCONbits.PEIE = 1;    // Peripheral Interrupt Enable
-    INTCONbits.GIE  = 1;   
+// Comment a function and leverage automatic documentation with slash star star
+/**
+    <p><b>Function prototype:</b></p>
+  
+    <p><b>Summary:</b></p>
 
+    <p><b>Description:</b></p>
 
-    TRISBbits.TRISB1 = 1; // SCL as input
-    TRISBbits.TRISB4 = 1; // SDA as input
+    <p><b>Precondition:</b></p>
 
-    SSP1CON1 = 0b00110110; // I2C Slave mode, 7-bit address
-    SSP1CON2 = 0;          // Default settings
-    SSP1STAT = 0;          // Clear status
+    <p><b>Parameters:</b></p>
 
-    SSP1ADD = (I2C_ADDRESS << 1); // Load slave address into SSP1ADD (shifted)
+    <p><b>Returns:</b></p>
 
-    SSP1CON1bits.SSPEN = 1; // Enable MSSP
+    <p><b>Example:</b></p>
+    <code>
+ 
+    </code>
+
+    <p><b>Remarks:</b></p>
+ */
+// TODO Insert declarations or function prototypes (right here) to leverage 
+// live documentation
+
+#ifdef	__cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+    // TODO If C++ is being used, regular C code needs function names to have C 
+    // linkage so the functions can be used by the c code. 
+
+#ifdef	__cplusplus
 }
+#endif /* __cplusplus */
 
 #endif	/* XC_HEADER_TEMPLATE_H */
 

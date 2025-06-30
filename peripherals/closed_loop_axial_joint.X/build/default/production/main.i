@@ -4258,6 +4258,10 @@ extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/xc.h" 2 3
 # 10 "main.c" 2
+# 1 "./config_pic.h" 1
+# 11 "main.c" 2
+# 1 "./stepper_controller.h" 1
+# 34 "./stepper_controller.h"
 # 1 "/Applications/microchip/xc8/v3.00/pic/include/c99/stdint.h" 1 3
 # 26 "/Applications/microchip/xc8/v3.00/pic/include/c99/stdint.h" 3
 # 1 "/Applications/microchip/xc8/v3.00/pic/include/c99/bits/alltypes.h" 1 3
@@ -4342,7 +4346,13 @@ typedef int32_t int_fast32_t;
 typedef uint16_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
 # 149 "/Applications/microchip/xc8/v3.00/pic/include/c99/stdint.h" 2 3
-# 11 "main.c" 2
+# 35 "./stepper_controller.h" 2
+
+
+
+int move_stepper(int8_t distance);
+# 12 "main.c" 2
+
 # 1 "./i2c_init_config.h" 1
 # 39 "./i2c_init_config.h"
 void i2c_slave_init(void) {
@@ -4362,11 +4372,11 @@ void i2c_slave_init(void) {
     SSP1CON2 = 0;
     SSP1STAT = 0;
 
-    SSP1ADD = (0x69 << 1);
+    SSP1ADD = (0x42 << 1);
 
     SSP1CON1bits.SSPEN = 1;
 }
-# 12 "main.c" 2
+# 14 "main.c" 2
 
 #pragma config FOSC = INTOSC
 #pragma config WDTE = OFF
@@ -4380,10 +4390,21 @@ void i2c_slave_init(void) {
 
 
 
+
 void i2c_slave_init(void);
 void __attribute__((picinterrupt(("")))) isr(void);
 
 
+
+
+
+int pulses = 0;
+const float angle_per_pulse = 0.174;
+float theta = 0.0;
+
+int buff_ctl = 0;
+
+unsigned char* buffPtr;
 
 
 
@@ -4393,19 +4414,40 @@ void main(void) {
     i2c_slave_init();
 
 
+    INTCONbits.INTE = 1;
+    INTCONbits.INTF = 0;
+
+
+
+
     TRISAbits.TRISA1 = 0;
+    TRISBbits.TRISB3 = 0;
+    ANSELBbits.ANSB3 = 0;
+
     LATAbits.LATA1 = 1;
+    LATBbits.LATB3 = 1;
     _delay((unsigned long)((1000)*(4000000/4000.0)));
     LATAbits.LATA1 = 0;
+    LATBbits.LATB3 = 0;
     _delay((unsigned long)((1000)*(4000000/4000.0)));
 
-    float set_angle = 0;
 
+
+
+
+    float theta_p = 0.0;
+    float set_p = 0.0;
+    float e = 0.0;
+    float u = 0.0;
 
     while(1){
+        theta = ( (float) pulses ) * angle_per_pulse;
+
+
 
 
     }
+
 
     return;
 }
@@ -4414,29 +4456,38 @@ void main(void) {
 
 
 void __attribute__((picinterrupt(("")))) isr(void) {
+    if(INTCONbits.INTF){
+        pulses++;
+        LATBbits.LATB3 ^= 1;
+        INTCONbits.INTF = 0;
+    }
+
+
+
+
     if (SSP1IF && SSP1IE) {
 
 
         if (!SSP1STATbits.D_nA && !SSP1STATbits.R_nW) {
-
+            buff_ctl = 0;
             volatile uint8_t dummy = SSP1BUF;
         }
 
         else if (SSP1STATbits.D_nA && !SSP1STATbits.R_nW) {
-            uint8_t data = SSP1BUF;
-            LATAbits.LATA1 = 1;
-            if (data == 0x02) {
-                LATAbits.LATA1 = 1;
-            } else if (data == 0x01) {
-                LATAbits.LATA1 = 0;
-            }
+            int8_t data = (int8_t) SSP1BUF;
+
             SSP1CON1bits.CKP = 1;
         }
 
         else if (SSP1STATbits.R_nW) {
             volatile uint8_t dummy = SSP1BUF;
-            SSP1BUF = 0x42;
+
+            unsigned char* path = (unsigned char*) &theta;
+            SSP1BUF = *(path + buff_ctl);
+            buff_ctl = (buff_ctl + 1) % 4;
+
             SSP1CON1bits.CKP = 1;
+
         }
 
         SSP1IF = 0;

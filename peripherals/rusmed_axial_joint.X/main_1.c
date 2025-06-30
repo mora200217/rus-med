@@ -32,26 +32,12 @@ void __interrupt() isr(void);
 // RB4: SCL1
 
 
-int pulses = 0; 
-const float angle_per_pulse = 0.174; 
-float theta = 0.0; 
-
-int buff_ctl = 0; 
-
-unsigned char* buffPtr; // Pointer to send buff in I2C handshake  
-
-
-
+int count; 
+int N = 0; 
 
 void main(void) {
     OSCCON = 0b01100000;
     i2c_slave_init();  // Activación de interrupciones y modo esclavo 
-    
-    // INT0 a
-    INTCONbits.INTE = 1; // Habilitar interrupciones INT0 
-    INTCONbits.INTF = 0; // Flag deshabilitada 
-    
-    
     
     // I2C Configuration 
     TRISAbits.TRISA1 = 0; // salida led 
@@ -65,23 +51,21 @@ void main(void) {
     LATBbits.LATB3 = 0; 
     __delay_ms(1000); 
     
+    float set_angle = 0; // Set point 
     
-    // PID constants 
-   
-
-    float theta_p = 0.0; 
-    float set_p = 0.0; 
-    float e = 0.0; 
-    float u = 0.0; 
     
+    // FSM - Cambiará 
     while(1){
-        theta = ( (float) pulses ) * angle_per_pulse;
-    
-        // PID Closed loop 
-        
-        
+         if(N > 0 && count < N){
+            __delay_ms(DELAY_TIME); 
+            LATAbits.LATA1 ^= 1; // Alternar estado
+            count++; 
+        }else{
+            count = 0; 
+            N = 0; 
+            LATAbits.LATA1 = 0;
+        }
     }
-    
    
     return;
 }
@@ -90,38 +74,27 @@ void main(void) {
  * ISR para la lectura de I2C en Slave Mode 
  */
 void __interrupt() isr(void) {
-    if(INTCONbits.INTF){
-        pulses++; 
-        LATBbits.LATB3 ^= 1; 
-        INTCONbits.INTF = 0; // Limpiar flag de interrupcion
-    }
-    
-    
-    
-    
     if (SSP1IF && SSP1IE) {
         
         // Dirección recibida
         if (!SSP1STATbits.D_nA && !SSP1STATbits.R_nW) {
-            buff_ctl = 0; 
+            
             volatile uint8_t dummy = SSP1BUF;
         }
         // Dato recibido
         else if (SSP1STATbits.D_nA && !SSP1STATbits.R_nW) {
             int8_t data = (int8_t) SSP1BUF;
+            
+            N = abs(data); 
          
             SSP1CON1bits.CKP = 1;
         }
         // Lectura solicitada por el master (opcional aquí)
         else if (SSP1STATbits.R_nW) {
+            LATBbits.LATB3 = 1; 
             volatile uint8_t dummy = SSP1BUF;
-            
-            unsigned char* path = (unsigned char*) &theta; 
-            SSP1BUF = *(path + buff_ctl);  
-            buff_ctl = (buff_ctl + 1) % 4; 
-            
+            SSP1BUF = N;
             SSP1CON1bits.CKP = 1;
-            
         }
 
         SSP1IF = 0;

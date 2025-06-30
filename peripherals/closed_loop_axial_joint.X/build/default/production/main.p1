@@ -78,8 +78,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1706
 [; ;/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h: 1706: extern volatile unsigned char OSCCON __attribute__((address(0x099)));
 [v _OSCCON `Vuc ~T0 @X0 0 e@153 ]
-"25 main.c
-[; ;main.c: 25:     while(1){
+"28 main.c
+[; ;main.c: 28:     INTCONbits.INTF = 0;
 [v _i2c_slave_init `(v ~T0 @X0 0 ef ]
 "1158 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h
 [; ;/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h: 1158:     struct {
@@ -92,6 +92,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1169
 [; ;/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h: 1169: extern volatile TRISAbits_t TRISAbits __attribute__((address(0x08C)));
 [v _TRISAbits `VS70 ~T0 @X0 0 e@140 ]
+"2919
+[; ;/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h: 2919:     struct {
+[s S149 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S149 . . ANSB1 ANSB2 ANSB3 ANSB4 ANSB5 ANSB6 ANSB7 ]
+"2929
+[; ;/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h: 2929:     struct {
+[s S150 :8 `uc 1 ]
+[n S150 . ANSELB ]
+"2918
+[; ;/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h: 2918: typedef union {
+[u S148 `S149 1 `S150 1 ]
+[n S148 . . . ]
+"2933
+[; ;/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h: 2933: extern volatile ANSELBbits_t ANSELBbits __attribute__((address(0x18D)));
+[v _ANSELBbits `VS148 ~T0 @X0 0 e@397 ]
 "2045
 [; ;/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h: 2045:     struct {
 [s S110 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -103,6 +118,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2056
 [; ;/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h: 2056: extern volatile LATAbits_t LATAbits __attribute__((address(0x10C)));
 [v _LATAbits `VS109 ~T0 @X0 0 e@268 ]
+"2102
+[; ;/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h: 2102:     struct {
+[s S112 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S112 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
+"2101
+[; ;/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h: 2101: typedef union {
+[u S111 `S112 1 ]
+[n S111 . . ]
+"2113
+[; ;/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h: 2113: extern volatile LATBbits_t LATBbits __attribute__((address(0x10D)));
+[v _LATBbits `VS111 ~T0 @X0 0 e@269 ]
 [v F2447 `(v ~T0 @X0 1 tf1`ul ]
 "92 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/pic.h
 [v __delay `JF2447 ~T0 @X0 0 e ]
@@ -637,8 +663,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./i2c_init_config.h: 54:     SSP1STAT = 0;
 [e = _SSP1STAT -> -> 0 `i `uc ]
 "56
-[; ;./i2c_init_config.h: 56:     SSP1ADD = (0x69 << 1);
-[e = _SSP1ADD -> << -> 105 `i -> 1 `i `uc ]
+[; ;./i2c_init_config.h: 56:     SSP1ADD = (0x42 << 1);
+[e = _SSP1ADD -> << -> 66 `i -> 1 `i `uc ]
 "58
 [; ;./i2c_init_config.h: 58:     SSP1CON1bits.SSPEN = 1;
 [e = . . _SSP1CON1bits 0 5 -> -> 1 `i `uc ]
@@ -646,147 +672,211 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./i2c_init_config.h: 59: }
 [e :UE 354 ]
 }
-"13 main.c
-[; ;main.c: 13:     i2c_slave_init();
+"15 main.c
+[; ;main.c: 15: int buff_ctl = 0;
 [p x FOSC  =  INTOSC ]
-"14
-[; ;main.c: 14: 
-[p x WDTE  =  OFF ]
-"15
-[; ;main.c: 15: 
-[p x PWRTE  =  ON ]
 "16
-[; ;main.c: 16:     TRISAbits.TRISA1 = 0;
-[p x MCLRE  =  ON ]
+[; ;main.c: 16: 
+[p x WDTE  =  OFF ]
 "17
-[; ;main.c: 17:     LATAbits.LATA1 = 1;
-[p x BOREN  =  OFF ]
+[; ;main.c: 17: unsigned char* buffPtr;
+[p x PWRTE  =  ON ]
 "18
-[; ;main.c: 18:     _delay((unsigned long)((1000)*(4000000/4000.0)));
+[; ;main.c: 18: 
+[p x MCLRE  =  ON ]
+"19
+[; ;main.c: 19: 
+[p x BOREN  =  OFF ]
+"20
+[; ;main.c: 20: 
 [p x LVP  =  OFF ]
+"35
+[; ;main.c: 35:     ANSELBbits.ANSB3 = 0;
+[v _pulses `i ~T0 @X0 1 e ]
+[i _pulses
+-> 0 `i
+]
+"36
+[; ;main.c: 36: 
+[v _angle_per_pulse `Cf ~T0 @X0 1 e ]
+[i _angle_per_pulse
+-> .0.174 `f
+]
+"37
+[; ;main.c: 37:     LATAbits.LATA1 = 1;
+[v _theta `f ~T0 @X0 1 e ]
+[i _theta
+-> .0.0 `f
+]
+"39
+[; ;main.c: 39:     _delay((unsigned long)((1000)*(4000000/4000.0)));
+[v _buff_ctl `i ~T0 @X0 1 e ]
+[i _buff_ctl
+-> 0 `i
+]
+"41
+[; ;main.c: 41:     LATBbits.LATB3 = 0;
+[v _buffPtr `*uc ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"33
-[; ;main.c: 33: 
+"46
+[; ;main.c: 46: 
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"34
-[; ;main.c: 34: 
-[e = _OSCCON -> -> 96 `i `uc ]
-"35
-[; ;main.c: 35: 
-[e ( _i2c_slave_init ..  ]
-"38
-[; ;main.c: 38: 
-[e = . . _TRISAbits 0 1 -> -> 0 `i `uc ]
-"39
-[; ;main.c: 39: 
-[e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
-"40
-[; ;main.c: 40:         if (!SSP1STATbits.D_nA && !SSP1STATbits.R_nW) {
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"41
-[; ;main.c: 41: 
-[e = . . _LATAbits 0 1 -> -> 0 `i `uc ]
-"42
-[; ;main.c: 42:             volatile uint8_t dummy = SSP1BUF;
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"44
-[; ;main.c: 44: 
-[v _set_angle `f ~T0 @X0 1 a ]
-[e = _set_angle -> -> 0 `i `f ]
 "47
-[; ;main.c: 47:             LATAbits.LATA1 = 1;
+[; ;main.c: 47: 
+[e = _OSCCON -> -> 96 `i `uc ]
+"48
+[; ;main.c: 48:     float theta_p = 0.0;
+[e ( _i2c_slave_init ..  ]
+"51
+[; ;main.c: 51:     float u = 0.0;
+[e = . . _INTCONbits 0 4 -> -> 1 `i `uc ]
+"52
+[; ;main.c: 52: 
+[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
+"57
+[; ;main.c: 57: 
+[e = . . _TRISAbits 0 1 -> -> 0 `i `uc ]
+"58
+[; ;main.c: 58: 
+[e = . . _TRISBbits 0 3 -> -> 0 `i `uc ]
+"59
+[; ;main.c: 59:     }
+[e = . . _ANSELBbits 0 3 -> -> 0 `i `uc ]
+"61
+[; ;main.c: 61: 
+[e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
+"62
+[; ;main.c: 62:     return;
+[e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
+"63
+[; ;main.c: 63: }
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"64
+[; ;main.c: 64: 
+[e = . . _LATAbits 0 1 -> -> 0 `i `uc ]
+"65
+[; ;main.c: 65: 
+[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
+"66
+[; ;main.c: 66: 
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"72
+[; ;main.c: 72:         INTCONbits.INTF = 0;
+[v _theta_p `f ~T0 @X0 1 a ]
+[e = _theta_p -> .0.0 `f ]
+"73
+[; ;main.c: 73:     }
+[v _set_p `f ~T0 @X0 1 a ]
+[e = _set_p -> .0.0 `f ]
+"74
+[; ;main.c: 74: 
+[v _e `f ~T0 @X0 1 a ]
+[e = _e -> .0.0 `f ]
+"75
+[; ;main.c: 75: 
+[v _u `f ~T0 @X0 1 a ]
+[e = _u -> .0.0 `f ]
+"77
+[; ;main.c: 77: 
 [e :U 357 ]
 {
-"50
-[; ;main.c: 50:             } else if (data == 0x01) {
+"78
+[; ;main.c: 78:     if (SSP1IF && SSP1IE) {
+[e = _theta * -> _pulses `f _angle_per_pulse ]
+"83
+[; ;main.c: 83:             volatile uint8_t dummy = SSP1BUF;
 }
 [e :U 356 ]
 [e $U 357  ]
 [e :U 358 ]
-"52
-[; ;main.c: 52:             }
+"86
+[; ;main.c: 86:         else if (SSP1STATbits.D_nA && !SSP1STATbits.R_nW) {
 [e $UE 355  ]
-"53
-[; ;main.c: 53:             SSP1CON1bits.CKP = 1;
+"87
+[; ;main.c: 87:             int8_t data = (int8_t) SSP1BUF;
 [e :UE 355 ]
 }
 [v $root$_isr `(v ~T0 @X0 0 e ]
-"58
-[; ;main.c: 58:             SSP1BUF = 0x42;
+"92
+[; ;main.c: 92:         else if (SSP1STATbits.R_nW) {
 [v _isr `(v ~T2 @X0 1 ef ]
 {
 [e :U _isr ]
 [f ]
-"59
-[; ;main.c: 59:             SSP1CON1bits.CKP = 1;
-[e $ ! && _SSP1IF _SSP1IE 360  ]
+"93
+[; ;main.c: 93:             volatile uint8_t dummy = SSP1BUF;
+[e $ ! != -> . . _INTCONbits 0 1 `i -> 0 `i 360  ]
 {
-"62
-[; ;main.c: 62:         SSP1IF = 0;
-[e $ ! && ! != -> . . _SSP1STATbits 0 5 `i -> 0 `i ! != -> . . _SSP1STATbits 0 2 `i -> 0 `i 361  ]
+"94
+[; ;main.c: 94: 
+[e ++ _pulses -> 1 `i ]
+"95
+[; ;main.c: 95:             unsigned char* path = (unsigned char*) &theta;
+[e =^ . . _LATBbits 0 3 -> -> 1 `i `Vuc ]
+"96
+[; ;main.c: 96:             SSP1BUF = *(path + buff_ctl);
+[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
+"97
+[; ;main.c: 97:             buff_ctl = (buff_ctl + 1) % 4;
+}
+[e :U 360 ]
+"102
+[; ;main.c: 102: 
+[e $ ! && _SSP1IF _SSP1IE 361  ]
 {
-"64
-[; ;main.c: 64: }
+"105
+[; ;main.c: 105: }
+[e $ ! && ! != -> . . _SSP1STATbits 0 5 `i -> 0 `i ! != -> . . _SSP1STATbits 0 2 `i -> 0 `i 362  ]
+{
+"106
+[e = _buff_ctl -> 0 `i ]
+"107
 [v _dummy `Vuc ~T0 @X0 1 a ]
 [e = _dummy _SSP1BUF ]
-"65
+"108
 }
-[e $U 362  ]
-"67
-[e :U 361 ]
-[e $ ! && != -> . . _SSP1STATbits 0 5 `i -> 0 `i ! != -> . . _SSP1STATbits 0 2 `i -> 0 `i 363  ]
+[e $U 363  ]
+"110
+[e :U 362 ]
+[e $ ! && != -> . . _SSP1STATbits 0 5 `i -> 0 `i ! != -> . . _SSP1STATbits 0 2 `i -> 0 `i 364  ]
 {
-"68
-[v _data `uc ~T0 @X0 1 a ]
-[e = _data _SSP1BUF ]
-"69
-[e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
-"70
-[e $ ! == -> _data `i -> 2 `i 364  ]
-{
-"71
-[e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
-"72
+"111
+[v _data `c ~T0 @X0 1 a ]
+[e = _data -> _SSP1BUF `c ]
+"113
+[e = . . _SSP1CON1bits 0 4 -> -> 1 `i `uc ]
+"114
 }
 [e $U 365  ]
+"116
 [e :U 364 ]
-[e $ ! == -> _data `i -> 1 `i 366  ]
+[e $ ! != -> . . _SSP1STATbits 0 2 `i -> 0 `i 366  ]
 {
-"73
-[e = . . _LATAbits 0 1 -> -> 0 `i `uc ]
-"74
+"117
+[v _dummy `Vuc ~T0 @X0 1 a ]
+[e = _dummy _SSP1BUF ]
+"119
+[v _path `*uc ~T0 @X0 1 a ]
+[e = _path -> &U _theta `*uc ]
+"120
+[e = _SSP1BUF *U + _path * -> _buff_ctl `x -> -> # *U _path `i `x ]
+"121
+[e = _buff_ctl % + _buff_ctl -> 1 `i -> 4 `i ]
+"123
+[e = . . _SSP1CON1bits 0 4 -> -> 1 `i `uc ]
+"125
 }
 [e :U 366 ]
 [e :U 365 ]
-"75
-[e = . . _SSP1CON1bits 0 4 -> -> 1 `i `uc ]
-"76
-}
-[e $U 367  ]
-"78
 [e :U 363 ]
-[e $ ! != -> . . _SSP1STATbits 0 2 `i -> 0 `i 368  ]
-{
-"79
-[v _dummy `Vuc ~T0 @X0 1 a ]
-[e = _dummy _SSP1BUF ]
-"80
-[e = _SSP1BUF -> -> 66 `i `uc ]
-"81
-[e = . . _SSP1CON1bits 0 4 -> -> 1 `i `uc ]
-"82
-}
-[e :U 368 ]
-[e :U 367 ]
-[e :U 362 ]
-"84
+"127
 [e = _SSP1IF -> -> 0 `i `b ]
-"85
+"128
 }
-[e :U 360 ]
-"86
+[e :U 361 ]
+"129
 [e :UE 359 ]
 }
