@@ -1,0 +1,3 @@
+[submodule "django-gui"]
+	path = django-gui
+	url = https://github.com/kyma-un/django-resmed-gui.git
