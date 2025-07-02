@@ -1,3 +1,6 @@
 [submodule "django-gui"]
 	path = django-gui
 	url = https://github.com/kyma-un/django-resmed-gui.git
+[submodule "ros_humble_rusmed"]
+	path = ros_humble_rusmed
+	url = https://github.com/kyma-un/ros_humble_rusmed.git
