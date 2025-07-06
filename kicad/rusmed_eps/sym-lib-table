@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "New_Library")(type "KiCad")(uri "${KIPRJMOD}/rusmed.pretty/New_Library.kicad_sym")(options "")(descr ""))
+  (lib (name "rusmed")(type "KiCad")(uri "${KIPRJMOD}/rusmed.pretty/rusmed.kicad_sym")(options "")(descr ""))
+)

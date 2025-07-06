@@ -78,8 +78,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1706
 [; ;/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h: 1706: extern volatile unsigned char OSCCON __attribute__((address(0x099)));
 [v _OSCCON `Vuc ~T0 @X0 0 e@153 ]
-"28 main.c
-[; ;main.c: 28: 
+"31 main.c
+[; ;main.c: 31: 
 [v _i2c_slave_init `(v ~T0 @X0 0 ef ]
 "1158 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h
 [; ;/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8/pic/include/proc/pic16f1827.h: 1158:     struct {
@@ -672,232 +672,226 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./i2c_init_config.h: 59: }
 [e :UE 354 ]
 }
-"15 main.c
-[; ;main.c: 15: int buff_ctl = 0;
+"18 main.c
+[; ;main.c: 18: unsigned char* buffPtr;
 [p x FOSC  =  INTOSC ]
-"16
-[; ;main.c: 16: 
-[p x WDTE  =  OFF ]
-"17
-[; ;main.c: 17: unsigned char* buffPtr;
-[p x PWRTE  =  ON ]
-"18
-[; ;main.c: 18: 
-[p x MCLRE  =  ON ]
 "19
-[; ;main.c: 19: unsigned char flag = 0;
-[p x BOREN  =  OFF ]
+[; ;main.c: 19: 
+[p x WDTE  =  OFF ]
 "20
-[; ;main.c: 20: 
+[; ;main.c: 20: volatile unsigned char flag = 0;
+[p x PWRTE  =  ON ]
+"21
+[; ;main.c: 21: 
+[p x MCLRE  =  ON ]
+"22
+[; ;main.c: 22: 
+[p x BOREN  =  OFF ]
+"23
+[; ;main.c: 23: 
 [p x LVP  =  OFF ]
-"35
-[; ;main.c: 35: 
-[v _pulses `i ~T0 @X0 1 e ]
+"38
+[; ;main.c: 38:     TRISAbits.TRISA1 = 0;
+[v _pulses `Vi ~T0 @X0 1 e ]
 [i _pulses
 -> 0 `i
 ]
-"36
-[; ;main.c: 36: 
+"39
+[; ;main.c: 39:     TRISBbits.TRISB3 = 0;
 [v _angle_per_pulse `Cf ~T0 @X0 1 e ]
 [i _angle_per_pulse
 -> .0.174 `f
 ]
-"37
-[; ;main.c: 37:     TRISAbits.TRISA1 = 0;
-[v _theta `f ~T0 @X0 1 e ]
+"40
+[; ;main.c: 40:     ANSELBbits.ANSB3 = 0;
+[v _theta `Vf ~T0 @X0 1 e ]
 [i _theta
 -> .0.0 `f
 ]
-"39
-[; ;main.c: 39:     ANSELBbits.ANSB3 = 0;
-[v _buff_ctl `i ~T0 @X0 1 e ]
+"42
+[; ;main.c: 42: 
+[v _buff_ctl `Vi ~T0 @X0 1 e ]
 [i _buff_ctl
 -> 0 `i
 ]
-"41
-[; ;main.c: 41:     LATAbits.LATA1 = 1;
-[v _buffPtr `*uc ~T0 @X0 1 e ]
 "43
-[; ;main.c: 43:     _delay((unsigned long)((1000)*(4000000/4000.0)));
-[v _flag `uc ~T0 @X0 1 e ]
+[; ;main.c: 43:     LATAbits.LATA1 = 1;
+[v _buffPtr `*uc ~T0 @X0 1 e ]
+"45
+[; ;main.c: 45:     _delay((unsigned long)((1000)*(4000000/4000.0)));
+[v _flag `Vuc ~T0 @X0 1 e ]
 [i _flag
 -> -> 0 `i `uc
 ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"48
-[; ;main.c: 48: 
+"50
+[; ;main.c: 50:         theta = ((float)pulses) * angle_per_pulse;
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"49
-[; ;main.c: 49:     while(1){
+"52
+[; ;main.c: 52:         LATAbits.LATA3 = flag;
 [e = _OSCCON -> -> 96 `i `uc ]
-"50
-[; ;main.c: 50:         theta = ( (float) pulses ) * angle_per_pulse;
-[e ( _i2c_slave_init ..  ]
-"53
-[; ;main.c: 53: 
-[e = . . _INTCONbits 0 4 -> -> 1 `i `uc ]
 "54
 [; ;main.c: 54: 
-[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
+[e ( _i2c_slave_init ..  ]
 "57
-[; ;main.c: 57:     }
-[e = . . _TRISAbits 0 3 -> -> 0 `i `uc ]
+[; ;main.c: 57: }
+[e = . . _INTCONbits 0 4 -> -> 1 `i `uc ]
 "58
 [; ;main.c: 58: 
-[e = . . _TRISAbits 0 4 -> -> 0 `i `uc ]
+[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
 "61
-[; ;main.c: 61: }
-[e = . . _TRISAbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 61: 
+[e = . . _TRISAbits 0 3 -> -> 0 `i `uc ]
 "62
-[; ;main.c: 62: 
-[e = . . _TRISBbits 0 3 -> -> 0 `i `uc ]
+[; ;main.c: 62: void __attribute__((picinterrupt(("")))) isr(void) {
+[e = . . _TRISAbits 0 4 -> -> 0 `i `uc ]
 "63
 [; ;main.c: 63: 
-[e = . . _ANSELBbits 0 3 -> -> 0 `i `uc ]
+[e = . . _TRISAbits 0 1 -> -> 0 `i `uc ]
+"64
+[; ;main.c: 64:     if (INTCONbits.INTF) {
+[e = . . _TRISBbits 0 3 -> -> 0 `i `uc ]
 "65
-[; ;main.c: 65: 
-[e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
-"66
-[; ;main.c: 66: void __attribute__((picinterrupt(("")))) isr(void) {
-[e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
-"67
-[; ;main.c: 67:     if(INTCONbits.INTF){
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;main.c: 65:         pulses++;
+[e = . . _ANSELBbits 0 3 -> -> 0 `i `uc ]
 "68
-[; ;main.c: 68:         pulses++;
-[e = . . _LATAbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 68:     }
+[e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
 "69
-[; ;main.c: 69:         LATBbits.LATB3 ^= 1;
+[; ;main.c: 69: 
+[e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
+"70
+[; ;main.c: 70: 
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"71
+[; ;main.c: 71:     if (SSP1IF && SSP1IE) {
+[e = . . _LATAbits 0 1 -> -> 0 `i `uc ]
+"72
+[; ;main.c: 72:         if (!SSP1STATbits.D_nA && !SSP1STATbits.R_nW) {
 [e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
-"73
-[; ;main.c: 73:     }
+"74
+[; ;main.c: 74:             volatile uint8_t dummy = SSP1BUF;
 [e :U 357 ]
 {
-"74
-[; ;main.c: 74: 
-[e = _theta * -> _pulses `f _angle_per_pulse ]
 "75
-[; ;main.c: 75: 
+[; ;main.c: 75:             buff_ctl = 0;
+[e = _theta * -> _pulses `f _angle_per_pulse ]
+"77
+[; ;main.c: 77:         else if (SSP1STATbits.D_nA && !SSP1STATbits.R_nW) {
 [e = . . _LATAbits 0 3 _flag ]
-"76
-[; ;main.c: 76: 
+"78
+[; ;main.c: 78: 
 [e = . . _LATAbits 0 4 -> ~ -> _flag `i `uc ]
 "81
-[; ;main.c: 81:         if (!SSP1STATbits.D_nA && !SSP1STATbits.R_nW) {
+[; ;main.c: 81:                 flag = 0;
 }
 [e :U 356 ]
 [e $U 357  ]
 [e :U 358 ]
-"84
-[; ;main.c: 84:         }
-[e $UE 355  ]
-"85
-[; ;main.c: 85: 
+"82
+[; ;main.c: 82:             } else if (data == 0x03) {
 [e :UE 355 ]
 }
 [v $root$_isr `(v ~T0 @X0 0 e ]
-"90
-[; ;main.c: 90:             }else if(data == 0x03){
+"87
+[; ;main.c: 87:         else if (SSP1STATbits.R_nW) {
 [v _isr `(v ~T2 @X0 1 ef ]
 {
 [e :U _isr ]
 [f ]
-"91
-[; ;main.c: 91:                 flag = 1;
+"89
+[; ;main.c: 89:             volatile uint8_t dummy = SSP1BUF;
 [e $ ! != -> . . _INTCONbits 0 1 `i -> 0 `i 360  ]
 {
-"92
-[; ;main.c: 92:             }
-[e ++ _pulses -> 1 `i ]
-"93
-[; ;main.c: 93: 
+"90
+[; ;main.c: 90: 
+[e ++ _pulses -> -> 1 `i `Vi ]
+"91
+[; ;main.c: 91:             unsigned char* path = (unsigned char*)&theta;
 [e =^ . . _LATBbits 0 3 -> -> 1 `i `Vuc ]
-"94
-[; ;main.c: 94: 
+"92
+[; ;main.c: 92:             SSP1BUF = *(path + buff_ctl);
 [e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
-"97
-[; ;main.c: 97: 
+"93
+[; ;main.c: 93:             buff_ctl = (buff_ctl + 1) % 4;
 }
 [e :U 360 ]
-"102
-[; ;main.c: 102:             SSP1BUF = *(path + buff_ctl);
+"96
+[; ;main.c: 96:         }
 [e $ ! && _SSP1IF _SSP1IE 361  ]
 {
-"105
-[; ;main.c: 105:             SSP1CON1bits.CKP = 1;
+"97
+[; ;main.c: 97: 
 [e $ ! && ! != -> . . _SSP1STATbits 0 5 `i -> 0 `i ! != -> . . _SSP1STATbits 0 2 `i -> 0 `i 362  ]
 {
-"106
-[; ;main.c: 106: 
-[e = _buff_ctl -> 0 `i ]
-"107
-[; ;main.c: 107:         }
+"99
+[; ;main.c: 99:     }
 [v _dummy `Vuc ~T0 @X0 1 a ]
 [e = _dummy _SSP1BUF ]
-"108
-[; ;main.c: 108: 
+"100
+[; ;main.c: 100: }
+[e = _buff_ctl -> 0 `i ]
+"101
 }
 [e $U 363  ]
-"110
-[; ;main.c: 110:     }
+"102
 [e :U 362 ]
 [e $ ! && != -> . . _SSP1STATbits 0 5 `i -> 0 `i ! != -> . . _SSP1STATbits 0 2 `i -> 0 `i 364  ]
 {
-"111
-[; ;main.c: 111: }
+"104
 [v _data `c ~T0 @X0 1 a ]
 [e = _data -> _SSP1BUF `c ]
-"112
+"105
 [e $ ! == -> _data `i -> 2 `i 365  ]
 {
-"113
+"106
 [e = _flag -> -> 0 `i `uc ]
-"114
+"107
 }
 [e $U 366  ]
 [e :U 365 ]
 [e $ ! == -> _data `i -> 3 `i 367  ]
 {
-"115
+"108
 [e = _flag -> -> 1 `i `uc ]
-"116
+"109
 }
 [e :U 367 ]
 [e :U 366 ]
-"119
+"110
 [e = . . _SSP1CON1bits 0 4 -> -> 1 `i `uc ]
-"120
+"111
 }
 [e $U 368  ]
-"122
+"112
 [e :U 364 ]
 [e $ ! != -> . . _SSP1STATbits 0 2 `i -> 0 `i 369  ]
 {
-"123
+"114
 [v _dummy `Vuc ~T0 @X0 1 a ]
 [e = _dummy _SSP1BUF ]
-"125
+"116
 [v _path `*uc ~T0 @X0 1 a ]
 [e = _path -> &U _theta `*uc ]
-"126
+"117
 [e = _SSP1BUF *U + _path * -> _buff_ctl `x -> -> # *U _path `i `x ]
-"127
+"118
 [e = _buff_ctl % + _buff_ctl -> 1 `i -> 4 `i ]
-"129
+"120
 [e = . . _SSP1CON1bits 0 4 -> -> 1 `i `uc ]
-"131
+"121
 }
 [e :U 369 ]
 [e :U 368 ]
 [e :U 363 ]
-"133
+"123
 [e = _SSP1IF -> -> 0 `i `b ]
-"134
+"124
 }
 [e :U 361 ]
-"135
+"125
 [e :UE 359 ]
 }
