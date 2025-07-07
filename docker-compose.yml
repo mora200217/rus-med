@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  ros-middleware:
+    build:
+      context: ./ros_humble_rusmed
+    platform: linux/arm64
+    container_name: ros_humble_container
+    command: tail -f /dev/null
+    volumes:
+      - ./ros_humble_rusmed/src:/ros2_ws/src
+
+  gui:
+    build:
+      context: ./django-gui/rusmed-frontend
+      # platform: linux/arm64
+    container_name: react_gui_container
+    ports:
+      - "3000:80"

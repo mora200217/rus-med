@@ -6,6 +6,7 @@
             <file>file:/Users/amoralesma/Documents/UN/PAI/rusmed/peripherals/rusmed_axial_joint_controller.X/i2c_init_config.h</file>
             <file>file:/Users/amoralesma/Documents/UN/PAI/rusmed/peripherals/rusmed_axial_joint_controller.X/config_pic.h</file>
             <file>file:/Users/amoralesma/Documents/UN/PAI/rusmed/peripherals/rusmed_axial_joint_controller.X/main.c</file>
+            <file>file:/Users/amoralesma/Documents/UN/PAI/rusmed/peripherals/rusmed_axial_joint_controller.X/stepper_controller.h</file>
         </group>
     </open-files>
 </project-private>
