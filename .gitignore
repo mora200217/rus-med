@@ -3,6 +3,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/mplabx,c
 # Edit at https://www.toptal.com/developers/gitignore?templates=mplabx,c
 
+
+
+.$*.drawio*
+
 ### C ###
 # Prerequisites
 *.d
